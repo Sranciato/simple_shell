@@ -1,5 +1,12 @@
 #include "shell.h"
 
+char *set_path(buf_struct *a, char path_buf[])
+{
+	getcwd(path_buf, 1000);
+	_strcat(path_buf, "/");
+	_strcat(path_buf, a->args[0]);
+	return (path_buf);
+}
 /**
  * execute - execute command
  * @a: buf struct pointer
@@ -16,7 +23,7 @@ int execute(buf_struct *a, char *path)
 	_memset(buffer, 0, 1000);
 	_itoa(a->hist, buffer);
 	if (path[0] == 0)
-		path = getcwd(path_buf, 1000);
+		path = set_path(a, path_buf);
 	if (pid == 0)
 	{
 		if (a->args[0][0] == '/')
