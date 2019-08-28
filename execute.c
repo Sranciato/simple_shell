@@ -10,12 +10,13 @@ int execute(buf_struct *a, char *path)
 {
 	pid_t pid;
 	int status = 0;
-	char buffer[1000];
+	char buffer[1000], path_buf[1000];
 
 	pid = fork();
 	_memset(buffer, 0, 1000);
 	_itoa(a->hist, buffer);
-
+	if (path[0] == 0)
+		path = getcwd(path_buf, 1000);
 	if (pid == 0)
 	{
 		if (a->args[0][0] == '/')
@@ -43,7 +44,8 @@ int execute(buf_struct *a, char *path)
 			waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
-
-	a->ex_stat = status;
-	return (status);
+	a->ex_stat = WEXITSTATUS(status);
+	if (a->ex_stat == 13)
+		a->ex_stat = 127;
+	return (WEXITSTATUS(status));
 }

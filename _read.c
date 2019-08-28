@@ -15,7 +15,7 @@ char *_read(char *buf)
 	else if (rd == 0)
 	{
 		write(STDOUT_FILENO, "\n", 1);
-		exit(EXIT_SUCCESS);
+		exit(127);
 	}
 	return (buf);
 }
