@@ -1,6 +1,23 @@
 #include "shell.h"
 
 /**
+ * check_access - checks for access
+ * @path: path to check
+ * Return: access results
+ */
+int check_access(char *path)
+{
+	int check = 0;
+
+	check = access(path, F_OK);
+	if (check)
+		return (check);
+	check = access(path, X_OK);
+	if (check)
+		return (check);
+	return (check);
+}
+/**
  * set_path - sets path to current directory
  * @a: buf struct pointer
  * @path_buf: buffer for path
@@ -32,16 +49,17 @@ char *set_path(buf_struct *a, char path_buf[])
 int execute(buf_struct *a, char *path)
 {
 	pid_t pid;
-	int status = 0;
+	int status = 0, check;
 	char buffer[1000], path_buf[1000];
 
+	check = check_access(path);
+	if (check != 0)
+		return (check);
+	pid = fork();
 	_memset(buffer, 0, 1000);
 	_itoa(a->hist, buffer);
 	if (path[0] == 0)
 		path = set_path(a, path_buf);
-	if (access(path, F_OK | X_OK) != 0)
-		return (-1);
-	pid = fork();
 	if (pid == 0)
 	{
 		if (a->args[0][0] == '/')
