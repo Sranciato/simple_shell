@@ -8,8 +8,18 @@
  */
 char *set_path(buf_struct *a, char path_buf[])
 {
+	char *arg = NULL;
+
+	_memset(path_buf, 0, 1000);
 	getcwd(path_buf, 1000);
 	_strcat(path_buf, "/");
+	if (_strncmp(a->args[0], "./", 2) == 0)
+	{
+		arg = a->args[0];
+		arg++;
+		_strcat(path_buf, arg);
+		return (path_buf);
+	}
 	_strcat(path_buf, a->args[0]);
 	return (path_buf);
 }
