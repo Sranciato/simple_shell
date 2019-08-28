@@ -24,6 +24,7 @@ void _error(buf_struct *a, char buffer[])
  */
 void error_cd(buf_struct *a, char buffer[])
 {
+	a->ex_stat = 2;
 	write(STDOUT_FILENO, a->argv[0], _strlen(a->argv[0]));
 	write(STDOUT_FILENO, ": ", 2);
 	write(STDOUT_FILENO, buffer, 4);

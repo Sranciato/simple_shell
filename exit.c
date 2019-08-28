@@ -49,7 +49,7 @@ int check_exit(buf_struct *a)
 			}
 		}
 		else
-			exit(EXIT_SUCCESS);
+			exit(a->ex_stat);
 	}
 	return (0);
 }

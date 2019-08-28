@@ -20,6 +20,7 @@
  * @argv: First argument for running shell.
  * @hist: Line number.
  * @history: Buffer for line history.
+ * @ex_stat: Exit status.
  * @rbuf: Buffer for line read.
  * @dest: Buffer for _strcpy.
  * @path_copy: Buffer for copying path.
@@ -37,6 +38,7 @@ typedef struct buf_struct
 	char **argv;
 	int hist;
 	char history[100][100];
+	int ex_stat;
 
 	char rbuf[1024];
 	char dest[1000];

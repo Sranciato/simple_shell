@@ -44,5 +44,6 @@ int execute(buf_struct *a, char *path)
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 
+	a->ex_stat = status;
 	return (status);
 }
