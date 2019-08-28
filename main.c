@@ -12,6 +12,7 @@ buf_struct *make_struct_a(char *envp[], char *argv[])
 	a.envp = envp;
 	a.argv = argv;
 	a.hist = 0;
+	a.ex_stat = 0;
 	_memset(a.path_buf, 0, sizeof(a.path_buf));
 	_memset(a.history, 0, sizeof(a.history));
 
