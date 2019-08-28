@@ -35,11 +35,13 @@ int execute(buf_struct *a, char *path)
 	int status = 0;
 	char buffer[1000], path_buf[1000];
 
-	pid = fork();
 	_memset(buffer, 0, 1000);
 	_itoa(a->hist, buffer);
 	if (path[0] == 0)
 		path = set_path(a, path_buf);
+	if (access(path, F_OK | X_OK) != 0)
+		return (-1);
+	pid = fork();
 	if (pid == 0)
 	{
 		if (a->args[0][0] == '/')
@@ -57,10 +59,7 @@ int execute(buf_struct *a, char *path)
 		}
 	}
 	else if (pid < 0)
-	{
-		perror("exe");
-		_exit(0);
-	}
+		_exit(errno);
 	else
 	{
 		do {
