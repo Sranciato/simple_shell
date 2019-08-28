@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * set_path - sets path to current directory
+ * @a: buf struct pointer
+ * @path_buf: buffer for path
+ * Return: path buffer
+ */
 char *set_path(buf_struct *a, char path_buf[])
 {
 	getcwd(path_buf, 1000);
