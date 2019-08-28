@@ -7,12 +7,14 @@
 void pipe_file(buf_struct *a)
 {
 	char *path_buf[1000], *semi_buf[1000], *path, **test;
-	int i, ext;
+	int i, ext = 0;
 
+	_memset(semi_buf, 0 , sizeof(semi_buf));
 	_split_newline(a->rbuf, semi_buf);
 	for (i = 0; semi_buf[i]; i++)
 	{
 		_strcpy(a->history[a->hist++], a->rbuf);
+		_memset(a->dest, 0 , 1000);
 		check_comment(a->rbuf);
 		if ((check_semiandor(a) == 1))
                         continue;
