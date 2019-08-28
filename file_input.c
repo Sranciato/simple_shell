@@ -6,10 +6,10 @@
  */
 void file_input(buf_struct *a)
 {
-	int fd, rd, i, hist  = 0;
-	char *semi_buf[1000], *path, *path_buf[1000];
+	int fd, rd, i, ext = 0;
+	char *semi_buf[1000], *path;
 
-	fd = open(a->argv[0], O_RDONLY);
+	fd = open(a->argv[1], O_RDONLY);
 	if (fd == -1)
 		perror("hsh");
 
@@ -20,22 +20,21 @@ void file_input(buf_struct *a)
 	_split_newline(a->rbuf, semi_buf);
 	for (i = 0; semi_buf[i]; i++)
 	{
-		hist++;
-		_split(semi_buf[i], a->args);
-		path = get_path(a->envp);
-		_strcpy(a->path_copy, path);
-		_split(a->path_copy, path_buf);
-		if (a->args[0][0] == '/')
-		{
-			execute(a, a->args[0]);
-			_memset(a->args, 0, sizeof(a->args));
-			_memset(a->dest, 0, 1000);
-			continue;
-		}
-		find_path(path_buf, a->args, a->dest);
-		execute(a, a->dest);
 		_memset(a->args, 0, sizeof(a->args));
 		_memset(a->dest, 0, 1000);
+
+		a->hist++;
+		_split(semi_buf[i], a->args);
+		check_comment(a->rbuf);
+		if ((check_semiandor(a) == 1))
+			continue;
+		if ((check_bltin(a) != 0))
+			continue;
+		path = get_path(a->envp);
+		_strcpy(a->path_copy, path);
+		_split(a->path_copy, a->path_buf);
+		find_path(a->path_buf, a->args, a->dest);
+		ext = execute(a, a->dest);
 	}
-	exit(0);
+	exit(ext);
 }
