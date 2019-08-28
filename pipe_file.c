@@ -23,6 +23,8 @@ void pipe_file(buf_struct *a)
 			continue;
 		if (check_exit(a) == 1)
                         continue;
+		if ((check_bltin(a) != 0))
+			continue;
 		path = get_path(a->envp);
 		_strcpy(a->path_copy, path);
 		_split(a->path_copy, path_buf);
