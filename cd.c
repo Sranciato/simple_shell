@@ -116,8 +116,6 @@ void cd(buf_struct *a)
 				getcwd(a->ldbuf, 1000);
 				cd_helper(cwd, a->pwdb, a->envp);
 				change_old_pwd(a->envp, temp, a->opwdb);
-				write(STDOUT_FILENO, a->ldbuf, _strlen(a->ldbuf));
-				write(STDOUT_FILENO, "\n", 1);
 			}
 		}
 		else
