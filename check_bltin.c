@@ -14,6 +14,7 @@ int check_bltin(buf_struct *a)
 	}
 	if (_strcmp(a->args[0], "cd") == 0)
 	{
+		a->ex_stat = 0;
 		cd(a);
 		return (1);
 	}

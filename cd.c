@@ -98,7 +98,6 @@ void cd(buf_struct *a)
 	char *path_buf[1000];
 	char buffer[1000], cwd[1000], temp[1000], *pwd_split[1000];
 
-	a->ex_stat = 0;
 	_memset(a->pwdb, 0, 1000);
 	_strcpy(a->pwdb, "PWD=");
 	_memset(buffer, 0, 1000);
