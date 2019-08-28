@@ -24,7 +24,7 @@ void _semi(char *sbuf[], buf_struct *a)
 
 		if (a->args[0][0] == '/')
 		{
-			execute(a, NULL);
+			execute(a, a->args[0]);
 			continue;
 		}
 		check_comment(sbuf[i]);
