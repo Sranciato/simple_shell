@@ -84,7 +84,7 @@ int execute(buf_struct *a, char *path);
 void error_cd(buf_struct *a, char buffer[]);
 void _error(buf_struct *a, char buffer[]);
 int _itoa(int n, char buf[]);
-int _atoi(char *s);
+long _atoi(char *s);
 int _strlen(char *s);
 void *_memset(void *s, char c, unsigned int len);
 char *_memcpy(char *dest, char *src, unsigned int n);

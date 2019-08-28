@@ -26,8 +26,9 @@ void exit_error(buf_struct *a, char buffer[])
 int check_exit(buf_struct *a)
 {
 	char *ex = "exit";
-	int exit_code, check = 0;
+	int check = 0;
 	char buffer[1000];
+	long exit_code;
 
 	_memset(buffer, 0, 1000);
 	_itoa(a->hist, buffer);
