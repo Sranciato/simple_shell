@@ -67,6 +67,45 @@ PWD        The logical value of the current working directory.  This is set by t
 OLDPWD     The previous logical value of the current working directory.  This is set by the cd command.
 .PP
 PPID       The process ID of the parent process of the shell.
+.SH EXAMPLE
+.B In interactive mode:
+.br
+.SM $ ./hsh
+.br
+.SM ($) /bin/ls
+.br
+.SM hsh main.c shell.c
+.br
+.SM ($)
+.br
+.SM ($) exit
+.br
+.SM $
+
+.B Non-interactive mode
+.br
+.SM $ echo "/bin/ls" | ./hsh
+.br
+.SM hsh main.c shell.c test_file
+.br
+.SM $
+.br
+.SM $ cat test_file
+.br
+.SM /bin/ls
+.br
+.SM /bin/ls
+.br
+.SM $
+.br
+.SM cat test_file | ./hsh
+.br
+.SM hsh main.c shell.c test_file
+.br
+.SM hsh main.c shell.c test_file
+.br
+.SM $
+.br
 .SH BUGS
 .PP
 No bugs to report.
