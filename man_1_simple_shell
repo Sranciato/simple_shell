@@ -72,4 +72,4 @@ PPID       The process ID of the parent process of the shell.
 No bugs to report.
 .SH AUTHORS
 .PP
-Danny Holman, Stephen Ranciato
+Danny Hollman, Stephen Ranciato
